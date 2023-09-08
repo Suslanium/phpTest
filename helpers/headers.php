@@ -33,4 +33,18 @@ function setHTTPStatus($status = '200', $message = null)
     }
 }
 
+function getUserIDFromBearerToken()
+{
+    global $Link;
+    //Removing Bearer part
+    $token = substr(getallheaders()['Authorization'], 7);
+    $userFromToken = $Link->query("SELECT userID FROM tokens WHERE value='$token'")->fetch_assoc();
+
+    if (is_null($userFromToken)) {
+        return false;
+    }
+
+    return $userFromToken['userID'];
+}
+
 ?>

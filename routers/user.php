@@ -20,16 +20,11 @@ function getUser()
 {
     global $Link;
 
-    //Removing Bearer part
-    $token = substr(getallheaders()['Authorization'], 7);
-    $userFromToken = $Link->query("SELECT userID FROM tokens WHERE value='$token'")->fetch_assoc();
-
-    if (is_null($userFromToken)) {
+    $id = getUserIDFromBearerToken();
+    if (!$id) {
         setHTTPStatus("401", "Authentication is required to view user profile");
         return;
     }
-
-    $id = $userFromToken['userID'];
     $res = $Link->query("SELECT * FROM users WHERE id='$id'");
 
     if (!$res) {

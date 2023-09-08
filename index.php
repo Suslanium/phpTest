@@ -2,7 +2,7 @@
 include_once 'helpers/headers.php';
 include_once 'helpers/validation.php';
 
-global $Link;
+global $Link, $UploadPath;
 
 function getRequestMethod()
 {
@@ -33,6 +33,7 @@ function getData($requestMethod): stdClass
 
 header('Content-type: application/json');
 
+$UploadPath = 'uploads';
 $Link = mysqli_connect("127.0.0.1", "backend_demo", "testpassword", "backend_demo");
 if (!$Link) {
     setHTTPStatus("500", "Unable to connect to SQL database");
