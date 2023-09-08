@@ -16,7 +16,10 @@ function setHTTPStatus($status = '200', $message = null)
             $status = 'HTTP/1.0 403 Forbidden';
             break;
         case "404":
-            $status = 'HTTP/1.0 404 NOT FOUND';
+            $status = 'HTTP/1.0 404 Not found';
+            break;
+        case "409":
+            $status = 'HTTP/1.0 409 Conflict';
             break;
         case "500":
             $status = 'HTTP/1.0 500 Internal Server Error';

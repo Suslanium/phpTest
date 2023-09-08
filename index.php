@@ -1,5 +1,6 @@
 <?php
 include_once 'helpers/headers.php';
+include_once 'helpers/validation.php';
 
 global $Link;
 
@@ -15,7 +16,7 @@ function getRequestPath()
     return explode('/', $rawPath);
 }
 
-function getData($requestMethod)
+function getData($requestMethod): stdClass
 {
     $data = new stdClass();
     if ($requestMethod != "GET") {
